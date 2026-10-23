@@ -11,7 +11,6 @@ public class MovimientoNave : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
 
-        // Si no se asignó en el Inspector, busca el SpriteRenderer en los hijos
         if (spritePropulsor == null)
         {
             SpriteRenderer[] hijos = GetComponentsInChildren<SpriteRenderer>();
@@ -32,31 +31,29 @@ public class MovimientoNave : MonoBehaviour
         float v = Input.GetAxisRaw("Vertical");
         Vector2 dir = new Vector2(h, v).normalized;
 
-        // Mueve la nave con físicas sin importar la versión de Unity
         rb.linearVelocity = dir * velocidad;
 
-        // Cambia el color del propulsor
         if (spritePropulsor != null)
         {
             if (h < -0.1f)
             {
-                spritePropulsor.color = Color.red;       // Izquierda
+                spritePropulsor.color = Color.red;
             }
             else if (h > 0.1f)
             {
-                spritePropulsor.color = Color.blue;      // Derecha
+                spritePropulsor.color = Color.blue;
             }
             else if (v > 0.1f)
             {
-                spritePropulsor.color = Color.yellow;    // Arriba
+                spritePropulsor.color = Color.yellow;
             }
             else if (v < -0.1f)
             {
-                spritePropulsor.color = new Color(1f, 0.5f, 0f); // Abajo (Naranja)
+                spritePropulsor.color = new Color(1f, 0.5f, 0f);
             }
             else
             {
-                spritePropulsor.color = Color.gray;      // Quieto
+                spritePropulsor.color = Color.gray;
             }
         }
     }
